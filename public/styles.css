@@ -1,0 +1,12 @@
+nav {
+  min-height: 10vh;
+}
+main {
+  min-height: 80vh;
+}
+footer {
+  min-height: 10vh;
+}
+.my-4 {
+  margin: 0 !important;
+}
