@@ -1,0 +1,31 @@
+<div class="create-contact m-3">
+  <a type="button" href="/contact/add" class="btn btn-primary">Create</a>
+</div>
+
+<div class="div-listado-contactos">
+  <table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Email</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% contacts.forEach(c=> { %>
+      <tr>
+        <td><%= c.firstname %></td>
+        <td><%= c.lastname %></td>
+        <td><%= c.email %></td>
+        <td>
+          <a href="/contact/<%= c.id %>">🔎</a>
+          <a href="/contact/delete/<%= c.id %>">🗑️</a>
+          <a href="/contact/edit/<%= c.id %>">✏️</a>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>

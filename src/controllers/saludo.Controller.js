@@ -1,3 +1,5 @@
-exports.saludoViewController = (req, res) => { 
-  res.render("saludo");
+saludoViewController = (req, res) => {
+  res.render("/saludo", { title: "Saludo 👌 " });
 };
+
+module.exports = saludoViewController;

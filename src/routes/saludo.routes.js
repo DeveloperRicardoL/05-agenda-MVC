@@ -1,5 +1,7 @@
 const express = require("express");
-const saludoController = require("../controllers/saludo.Controller");
+const saludoViewController = require("../controllers/saludo.Controller");
 const saludoRoutes = express.Router();
 
-saludoRoutes.get("/saludo", saludoController.saludoViewController);
+saludoRoutes.get("/saludo", saludoViewController);
+
+module.exports = saludoViewController;

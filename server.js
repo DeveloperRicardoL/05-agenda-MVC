@@ -1,7 +1,10 @@
 const express = require("express");
 const path = require("path");
 const homeRoutes = require("./src/routes/home.routes");
-const saludoRoutes = require("./src/routes/saludo.routes");
+// const saludoRoutes = require("./src/routes/saludo.routes");
+const contactRoutes = require("./src/routes/contact.routes");
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
 
 var expressLayouts = require("express-ejs-layouts");
 
@@ -9,15 +12,27 @@ const app = express();
 const port = 3000;
 const public = path.join(__dirname, "public");
 
+app.use(express.urlencoded({extended:true}));
+
 app.use("/public", express.static(public));
 app.set("view engine", "ejs");
 app.use(expressLayouts);
+app.use(session({
+  secret: "miClaveSecreta",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 60000//esta en segundos es igual a 1 minuto
+  }
+}));
+app.use(cookieParser());
 
 //Configuro la ubicacion de las vistas y del layout
 app.set("views", path.join(__dirname, "src/views"));
 app.set("layout", path.join(__dirname, "src/views/shared/layout"));
 app.use("/", homeRoutes);
 // app.use("/saludo", saludoRoutes);
+app.use("/contact", contactRoutes);
 
 app.listen(port, () => {
   console.log(`Servidor corriendo en el puerto: http://localhost:${port}`);
